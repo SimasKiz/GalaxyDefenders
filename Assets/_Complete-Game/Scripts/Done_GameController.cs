@@ -14,19 +14,25 @@ public class Done_GameController : MonoBehaviour
 	public GUIText scoreText;
 	public GUIText restartText;
 	public GUIText gameOverText;
-	
+    public GUIText livesText;
+
 	private bool gameOver;
 	private bool restart;
 	private int score;
+    public int Lives { get; private set; }
+
 	
 	void Start ()
 	{
+        Lives = 3;
 		gameOver = false;
 		restart = false;
-		restartText.text = "";
+        livesText.text = "";
+        restartText.text = "";
 		gameOverText.text = "";
 		score = 0;
 		UpdateScore ();
+        UpdateLives();
 		StartCoroutine (SpawnWaves ());
 	}
 	
@@ -81,4 +87,23 @@ public class Done_GameController : MonoBehaviour
 		gameOverText.text = "Game Over!";
 		gameOver = true;
 	}
+
+    public void LoseLife()
+    {
+        Lives = Lives - 1;
+        if (Lives <= 0) GameOver();
+        UpdateLives();
+    }
+
+    public void GainLife()
+    {
+        Lives = Lives + 1;
+        UpdateLives();
+    }
+
+    public void UpdateLives()
+    {
+        livesText.text = "Lives: " + Lives;
+    }
+
 }
