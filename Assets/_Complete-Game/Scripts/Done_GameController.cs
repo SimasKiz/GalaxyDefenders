@@ -21,6 +21,7 @@ public class Done_GameController : MonoBehaviour
 	private int score;
     public int Lives { get; private set; }
 
+    public AudioSource powerupPickup;
 	
 	void Start ()
 	{
@@ -104,6 +105,11 @@ public class Done_GameController : MonoBehaviour
     public void UpdateLives()
     {
         livesText.text = "Lives: " + Lives;
+    }
+
+    public void PickupPowerup()
+    {
+        powerupPickup.Play();
     }
 
 }
