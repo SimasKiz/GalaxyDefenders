@@ -13,19 +13,28 @@ public class Done_PlayerController : MonoBehaviour
 	public float tilt;
 	public Done_Boundary boundary;
 
+
+    public Shooting shooting;
 	public GameObject shot;
 	public Transform shotSpawn;
 	public float fireRate;
-	 
-	private float nextFire;
-	
-	void Update ()
+
+
+    private float nextFire;
+
+    private void Start()
+    {
+        shooting = new Shooting();    
+    }
+
+    void Update ()
 	{
 		if (Input.GetButton("Fire1") && Time.time > nextFire) 
 		{
 			nextFire = Time.time + fireRate;
-			Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-			GetComponent<AudioSource>().Play ();
+
+            shooting.Shoot(shot, shotSpawn.position, shotSpawn.rotation);
+            GetComponent<AudioSource>().Play ();
 		}
 	}
 

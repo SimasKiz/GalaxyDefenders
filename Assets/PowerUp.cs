@@ -23,6 +23,10 @@ public class PowerUp : MonoBehaviour {
     {
 
     }
+    public virtual void Endeffect()
+    {
+
+    }
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
