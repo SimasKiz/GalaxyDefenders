@@ -56,7 +56,9 @@ public class Done_GameController : MonoBehaviour
 			for (int i = 0; i < hazardCount; i++)
 			{
 				GameObject hazard = hazards [Random.Range (0, hazards.Length)];
-				Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
+			    if (hazard.tag == "Hole")
+			        yield return new WaitForSeconds(1);
+                Vector3 spawnPosition = new Vector3 (Random.Range (-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
 				Quaternion spawnRotation = Quaternion.identity;
 				Instantiate (hazard, spawnPosition, spawnRotation);
 				yield return new WaitForSeconds (spawnWait);
@@ -92,6 +94,13 @@ public class Done_GameController : MonoBehaviour
     public void LoseLife()
     {
         Lives = Lives - 1;
+        if (Lives <= 0) GameOver();
+        UpdateLives();
+    }
+
+    public void LoseAllLifes()
+    {
+        Lives = 0;
         if (Lives <= 0) GameOver();
         UpdateLives();
     }
