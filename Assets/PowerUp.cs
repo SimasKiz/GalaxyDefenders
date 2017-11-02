@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour {
+public class PowerUp : MonoBehaviour
+{
 
     protected Done_GameController gameController;
 
