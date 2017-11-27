@@ -18,12 +18,12 @@ public class Done_GameController : MonoBehaviour
 
     private bool gameOver;
     private bool restart;
-    private int score;
+    public int score;
     public int Lives { get; set; }
 
 
 
-    void Start()
+    public void Start()
     {
         Lives = 3;
         gameOver = false;
@@ -37,7 +37,7 @@ public class Done_GameController : MonoBehaviour
         StartCoroutine(SpawnWaves());
     }
 
-    void Update()
+    public void Update()
     {
         if (restart)
         {
@@ -46,10 +46,19 @@ public class Done_GameController : MonoBehaviour
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
             }
         }
+
+       
     }
 
     IEnumerator SpawnWaves()
     {
+        if (gameOver)
+        {
+            restartText.text = "Press 'R' for Restart";
+            restart = true;
+
+        }
+ 
         yield return new WaitForSeconds(startWait);
         while (true)
         {
@@ -65,12 +74,7 @@ public class Done_GameController : MonoBehaviour
             }
             yield return new WaitForSeconds(waveWait);
 
-            if (gameOver)
-            {
-                restartText.text = "Press 'R' for Restart";
-                restart = true;
-                break;
-            }
+            
         }
     }
 
@@ -80,10 +84,11 @@ public class Done_GameController : MonoBehaviour
         UpdateScore();
     }
 
-    void UpdateScore()
+    public void UpdateScore()
     {
         scoreText.text = "Score: " + score;
     }
+
 
     public void GameOver()
     {
