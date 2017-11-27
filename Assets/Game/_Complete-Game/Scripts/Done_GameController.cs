@@ -19,15 +19,12 @@ public class Done_GameController : MonoBehaviour
     private bool gameOver;
     private bool restart;
     private int score;
-    public int Lives { get; private set; }
+    public int Lives { get; set; }
 
-    public AudioSource powerupPickup;
-    public AudioSource soundtrack;
+
 
     void Start()
     {
-        soundtrack.volume = PlayerPrefs.GetFloat("MusicSliderVolumeLevel", soundtrack.volume);
-        powerupPickup.volume = PlayerPrefs.GetFloat("SoundEffSliderVolumeLevel", powerupPickup.volume);
         Lives = 3;
         gameOver = false;
         restart = false;
@@ -119,9 +116,6 @@ public class Done_GameController : MonoBehaviour
         livesText.text = "Lives: " + Lives;
     }
 
-    public void PickupPowerup()
-    {
-        powerupPickup.Play();
-    }
+
 
 }

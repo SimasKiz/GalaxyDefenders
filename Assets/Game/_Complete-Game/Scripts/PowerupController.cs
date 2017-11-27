@@ -11,8 +11,13 @@ public class PowerupController : MonoBehaviour
     public float pwStartWait;
     public float pwWaveWait;
 
+    public AudioSource powerupPickup;
+
+
     void Start()
     {
+
+        powerupPickup.volume = PlayerPrefs.GetFloat("SoundEffSliderVolumeLevel", powerupPickup.volume);
         StartCoroutine(PowerupSpawnWaves());
     }
 
@@ -35,6 +40,11 @@ public class PowerupController : MonoBehaviour
             yield return new WaitForSeconds(pwWaveWait);
 
         }
+    }
+
+    public void PickupPowerup()
+    {
+        powerupPickup.Play();
     }
 
 }

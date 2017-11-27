@@ -5,18 +5,18 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour
 {
 
-    protected Done_GameController gameController;
+    protected PowerupController powerupController;
 
     void Start()
     {
-        GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
-        if (gameControllerObject != null)
+        GameObject powerupControllerObject = GameObject.FindGameObjectWithTag("PowerUpController");
+        if (powerupControllerObject != null)
         {
-            gameController = gameControllerObject.GetComponent<Done_GameController>();
+            powerupController = powerupControllerObject.GetComponent<PowerupController>();
         }
-        if (gameController == null)
+        if (powerupController == null)
         {
-            Debug.Log("Cannot find 'GameController' script");
+            Debug.Log("Cannot find 'PowerupController' script");
         }
     }
 
@@ -32,7 +32,7 @@ public class PowerUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            gameController.PickupPowerup();
+            powerupController.PickupPowerup();
             InitEffect();
             Destroy(gameObject);
         }
