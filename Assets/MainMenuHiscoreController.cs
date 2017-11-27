@@ -4,39 +4,40 @@ using System.Collections;
 using UnityEngine;
 
 
-public class ScoreManager : MonoBehaviour {
+public class MainMenuHiscoreController : MonoBehaviour
+{
 
     public Text hiscoreText;
     public Done_GameController gameController;
-    public Transform canvas;
 
     public float hiscoreCount;
 
-	// Use this for initialization
-	public void Start () {
-		if(PlayerPrefs.HasKey("Hiscore"))
+    // Use this for initialization
+    public void Start()
+    {
+        if (PlayerPrefs.HasKey("Hiscore"))
         {
             hiscoreCount = PlayerPrefs.GetFloat("Hiscore");
         }
-	}
-	
-	// Update is called once per frame
-	public void Update () {
+    }
+
+    // Update is called once per frame
+    public void Update()
+    {
 
 
-    GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
+        GameObject gameControllerObject = GameObject.FindGameObjectWithTag("GameController");
         if (gameControllerObject != null)
         {
             gameController = gameControllerObject.GetComponent<Done_GameController>();
-
             if (gameController.score > hiscoreCount)
             {
                 hiscoreCount = gameController.score;
                 PlayerPrefs.SetFloat("Hiscore", hiscoreCount);
             }
         }
-        
+
         hiscoreText.text = "Hiscore: " + hiscoreCount;
-		
-	}
+
+    }
 }

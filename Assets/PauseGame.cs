@@ -15,6 +15,9 @@ public class PauseGame : MonoBehaviour {
         }
 
 	}
+
+
+
     public void Pause ()
     {
         if (canvas.gameObject.activeInHierarchy == false)
